@@ -5,7 +5,9 @@ var startButton = document.getElementById("startButton");
 
 
 
-
+startButton.addEventListener("click", function() {
+    console.log("The start button was clicked");
+})
 
 
 
