@@ -7,6 +7,9 @@ var startButton = document.getElementById("startButton");
 
 startButton.addEventListener("click", function() {
     console.log("The start button was clicked");
+    // Start Timer
+    // Show first question and answer options
+    //
 })
 
 
