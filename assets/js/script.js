@@ -8,11 +8,52 @@ var startButton = document.getElementById("startButton");
 startButton.addEventListener("click", function() {
     console.log("The start button was clicked");
     // Start Timer
+    startTimer();
+
     // Show first question and answer options
-    //
+    showQuestions();
 })
 
 
+var secondsLeft = 60;
+
+function startTimer() {
+  //console.log("The timer is starting");
+  var timerInterval = setInterval(function() {
+    secondsLeft--;
+    timeClock.textContent = secondsLeft + " seconds left to complete the quiz.";
+
+    if (secondsLeft === 0) {
+      clearInterval(timerInterval);
+      console.log("Quiz Over");
+    }
+  }, 1000);
+}
+
+
+/*
+function setTime() {
+  // Sets interval in variable
+  var timerInterval = setInterval(function() {
+    secondsLeft--;
+    timeEl.textContent = secondsLeft + " seconds left till colorsplosion.";
+
+    if(secondsLeft === 0) {
+      // Stops execution of action at set interval
+      clearInterval(timerInterval);
+      // Calls function to create and append image
+      sendMessage();
+    }
+
+  }, 1000);
+}
+
+*/
+
+
+function showQuestions() {
+  console.log("Showing first question");
+}
 
 //EXAMPLE CODE
 /*
