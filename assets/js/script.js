@@ -3,6 +3,53 @@ var timeClock = document.getElementById("timeClock");
 var startButton = document.getElementById("startButton");
 
 
+var quizQuestions = [
+{
+  "Question1": "Is JavaScript the same as Java?",
+  "Question1AnswerChoices": ["Yes", "No"]                                     // [1]
+},
+{
+  "Question2": "Commonly used data types do not include?",
+  "Question2AnswerChoices": ["Strings", "Booleans", "Arrays", "Alerts"]           // [3]
+},
+{
+  "Question3": "Inside which HTML element do we put the JavaScript?",
+  "Question3AnswerChoices": ["<javascript>", "<script>", "<js>", "<scripting>"]     // [1]
+},
+{
+  "Question4": "Where is the correct place to insert a JavaScript?",
+  "Question4AnswerChoices": ["Both the <head> section and the <body> section are correct", "The <head> section", "The <body section>"]  //[0]
+},
+{
+  "Question5": "What is the correct syntax for referring to an external script called xxx.js?",
+  "Question5AnswerChoices": ["<script name=\"xxx.js\">", "script href=\"xxx.js\"", "script src=\"xxx.js\""]         //[2]
+},
+{
+  "Question6": "The external JavaScript file must contain the <script> tag.",
+  "Question6AnswerChoices": ["True", "False"]                                   // [1]
+},
+{
+  "Question7": "How do you write \"Hello World\" in an alert box?",
+  "Question7AnswerChoices": ["alert(\"Hello World\")", "alertBox(\"Hello World\")", "msg(\"Hello World\")", "msgBox(\"Hello World\")"]    // [0]
+},
+{
+  "Question8": "How do you create a function in JavaScript?",
+  "Question8AnswerChoices": ["function myFunction()", "function = myFunction()", "function:myFunction()"]         // [0]
+},
+{
+  "Question9": "How do you call a function named \"myFunction\"?",  
+  "Question9AnswerChoices": ["function myFunction()", "function = myFunction", "Function:myFunction()"]           // [0]
+},
+{
+  "Question10": "How does a WHILE loop start?",
+  "Question10AnswerChoices": ["while (i <= 10)", "while i = 1 to 10", "while (i <= 10; i++)"]                   // [0]
+}
+];
+
+
+// Create and store the quiz questions and the correct answer in an ARRAY OF OBJECTS in localStorage (Key/Value Pairs)
+// The show other answer options in the HTML
+// BUT since the correct answer is stored in the object, if the user DOES NOT click the correct answer (answer that matches the value) then it is incorrect and the timer decrements by 10 seconds
 
 
 startButton.addEventListener("click", function() {
@@ -15,7 +62,7 @@ startButton.addEventListener("click", function() {
 })
 
 
-var secondsLeft = 60;
+var secondsLeft = 10;
 
 function startTimer() {
   //console.log("The timer is starting");
@@ -30,25 +77,6 @@ function startTimer() {
   }, 1000);
 }
 
-
-/*
-function setTime() {
-  // Sets interval in variable
-  var timerInterval = setInterval(function() {
-    secondsLeft--;
-    timeEl.textContent = secondsLeft + " seconds left till colorsplosion.";
-
-    if(secondsLeft === 0) {
-      // Stops execution of action at set interval
-      clearInterval(timerInterval);
-      // Calls function to create and append image
-      sendMessage();
-    }
-
-  }, 1000);
-}
-
-*/
 
 
 function showQuestions() {
