@@ -1,4 +1,4 @@
-// NOTE: JSON.parse() takes in a string and turns it into an object         =>questions = JSON.parser(questions)
+// NOTE: JSON.parse() takes in a string and turns it into an object         =>  questions = JSON.parser(questions)
 // NOTE: JSON.stringify() takes in an object and turns it into a string     =>  questions = JSON.stringify(questions)
 // NOTE: Push a key/value pair into localStorage with setItem()             =>  localStorage.setItem("questions", questions) / MUST BE A STRING
 
@@ -9,14 +9,12 @@ var container = document.getElementById("container");
 var answerOptions = document.getElementById("answerOptions");
 
 
-// Allow user to select an answer and store the value of their response to localStorage in a boolean (eg. isCorrect or isIncorrect)
-
-
 // If answer is incorrect, decrement the timer by 10 seconds
 function isIncorrect() {
-
+// Decrement timer by 10 seconds
 }
 
+// Switch Statement to get correct answers to questions
 function CorrectAnswer(val) {
   var answer = " ";
 
@@ -40,61 +38,91 @@ function CorrectAnswer(val) {
   return answer;
 }
 
+// Switch Statement to get answer options for questions
+function showAnswerChoices(val) {
+  var answerChoices = " ";
+
+  switch(val) {
+      case (questions.q1):
+        answerChoice = choices.q1choices;
+      break;
+      case (questions.q2):
+        answerChoice = choices.q2choices;
+      break;
+      case (questions.q3):
+        answerChoice = choices.q3choices;
+      break;
+      case (questions.q4):
+        answerChoice = choices.q4choices;
+      break;
+      case (questions.q5):
+        answerChoice = choices.q5choices;
+      break;
+  }
+  return answerChoice;
+}
+
+
 // Show current question on HTML page
 function showQuestion1() {
-  var currentQuestion = questions.q1;
+  currentQuestion = questions.q1;
   console.log("Question 1: " + currentQuestion);
 
   if (currentQuestion == questions.q1) {
-    answerOptions = choices.q1choices;
     correctAnswer = CorrectAnswer(questions.q1);
-    console.log(correctAnswer);
+        console.log(correctAnswer);   
+    answerOptions = showAnswerChoices(questions.q1)
+        console.log(answerOptions);                                                   
     document.querySelector("#container").textContent = currentQuestion;   
-    currentQuestion = questions.q2;   // Show the second question
-    showQuestion2();
+    currentQuestion = questions.q2;                                                 
+    showQuestion2();                                                                // Show the second question
   } 
     function showQuestion2() {
     console.log("Question 2: " + currentQuestion);
-    answerOptions = choices.q2choices;
     correctAnswer = CorrectAnswer(questions.q2);
-    console.log(correctAnswer);
-    //document.querySelector("#container").textContent = currentQuestion;
+        console.log(correctAnswer); 
+    answerOptions = showAnswerChoices(questions.q2)
+        console.log(answerOptions); 
     currentQuestion = questions.q3;
-    showQuestion3();
+    showQuestion3();                                                                // Show the third question
   }
   function showQuestion3() {
     console.log("Question 3: " + currentQuestion);
-    answerOptions = choices.q3choices;
     correctAnswer = CorrectAnswer(questions.q3);
-    console.log(correctAnswer);
+        console.log(correctAnswer); 
+    answerOptions = showAnswerChoices(questions.q3)
+        console.log(answerOptions); 
     currentQuestion = questions.q4;
-    showQuestion4();
+    showQuestion4();                                                                // Show the fourth question
   }
   function showQuestion4() {
     console.log("Question 4: " + currentQuestion);  
-    answerOptions = choices.q4choices;
     correctAnswer = CorrectAnswer(questions.q4);
-    console.log(correctAnswer);
+        console.log(correctAnswer); 
+    answerOptions = showAnswerChoices(questions.q4)
+        console.log(answerOptions); 
     currentQuestion = questions.q5;
-    showQuestion5();
+    showQuestion5();                                                                // Show the fifth questions
   }
   function showQuestion5() {
     console.log("Question 5: " + currentQuestion);
-    answerOptions = choices.q5choices;
     correctAnswer = CorrectAnswer(questions.q5);
-    console.log(correctAnswer);
+        console.log(correctAnswer); 
+    answerOptions = showAnswerChoices(questions.q5)
+        console.log(answerOptions); 
   }
 }
 
+
+// Event Listener for Start Button
 startButton.addEventListener("click", function() {
-    // Start Timer
     startTimer();
-    // Show first question and answer options
     showQuestion1();
 })
 
 var secondsLeft = 60;
 
+// Timer
 function startTimer() {
   //console.log("The timer is starting");
   var timerInterval = setInterval(function() {
