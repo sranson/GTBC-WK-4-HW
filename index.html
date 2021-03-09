@@ -4,51 +4,31 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/style.css">
     <title>Coding Quiz</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="./assets/css/style.css">
-
-    
 </head>
 <body>
+    <div class="container">
 
+        <div id="question-container" class="hide">
+          
+            <div id="question">Question</div>
+            
+            <div id="answer-button" class="btn-grid">
+                <button class="answerButton">Answer 1</button>
+                <button class="answerButton">Answer 2</button>
+                <button class="answerButton">Answer 3</button>
+                <button class="answerButton">Answer 4</button>
+            </div>
 
-    <!-- DIV TO SHOW HIGHSCORES AND TIMER -->
-  <div class="flex-direction: column topRow">
-    <div class="d-flex justify-content-between">
-        <div>
-            <a href=""><p id="highScores">View Highscores</p></a>
         </div>
 
-        <div>
-            <p id="timeClock">Time: 60 seconds</p>
+        <div class="controls">
+            <button id="start-btn btn" class="start-btn btn">Start</button>
+            <button id="next-btn" class="next-btn btn">Next</button>
         </div>
     </div>
-  </div>
-
-
-    <!-- DIV TO SHOW THE HEADER AND INSTRUCTIONS -->
-   <div class= "container" id="container">
-        <div class="d-flex justify-content-center">
-            <div class="d-flex flex-column">
-                <h1 style="align-self: center;">Coding Quiz Challenge</h1>
-                <p style="align-self: center;">Try to answer the following questions within the timeframe. Keep in mind that incorrect answers will penalize your score/time by ten seconds!</p>
-            </div>
-        </div>
-
-        <!-- BUTTON TO START THE QUIZ -->
-            <div class="d-flex justify-content-center">
-                    <button id="startButton" class=" btn btn-outline-secondary buttonMargin">Start</button>
-            </div>
-
-            <div id="answerOptions">
-              
-            </div>
-    </div>
-
-
-
-
     <script src="./assets/js/script.js"></script>
 </body>
 </html>

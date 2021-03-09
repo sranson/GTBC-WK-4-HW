@@ -1,14 +1,72 @@
-.topRow {
-    margin: 5%;
+/* 11:52 */
+/* https://www.youtube.com/watch?v=riDzcEQbX6k */
+
+body {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    justify-content: center;
+    align-items: center;
+    background-color: green;
 }
 
 
 .container {
-    margin-top: 8%;
-    justify-content: center;
+    background-color: white;
+    width: 800px;
+    max-width: 80%;
+    border-radius: 10px;
+    height: 50%;
+    padding: 10px;
+    box-shadow: 0 0 10px 2px;
+}
+#question {
+    font-size: 40px;
 }
 
-.buttonMargin {
-    margin-top: 5%;
+.btn-grid {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    gap: 10px;
+    margin: 20px 0px;
+    padding-bottom: 8px;
+}
+
+.answerButton{
+    background-color: orange;
+    height: 50px;
+    border-radius: 5px;
+}
+
+.answerButton:hover {
+    border-color: black;
+}
+
+.btn {
+    background-color: red;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 5px 10px;
+    height: 40px;
+    outline: none;
+}
+
+.btn:hover {
+    border-color: black;
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: yellow;
+    
     
 }
+
+.start-btn .next-btn {
+    font-size: 1.5rem; 
+}  
+
