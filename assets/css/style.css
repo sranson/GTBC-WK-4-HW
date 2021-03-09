@@ -9,7 +9,6 @@ body {
     width: 100vw;
     justify-content: center;
     align-items: center;
-    background-color: green;
 }
 
 
@@ -22,6 +21,8 @@ body {
     padding: 10px;
     box-shadow: 0 0 10px 2px;
 }
+
+
 #question {
     font-size: 40px;
 }
@@ -35,7 +36,6 @@ body {
 }
 
 .answerButton{
-    background-color: orange;
     height: 50px;
     border-radius: 5px;
 }
@@ -45,7 +45,6 @@ body {
 }
 
 .btn {
-    background-color: red;
     border: 1px solid black;
     border-radius: 5px;
     padding: 5px 10px;
@@ -59,14 +58,11 @@ body {
 
 .controls {
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
-    background-color: yellow;
-    
-    
 }
 
 .start-btn .next-btn {
-    font-size: 1.5rem; 
+    font-size: 1.5 rem; 
 }  
 
