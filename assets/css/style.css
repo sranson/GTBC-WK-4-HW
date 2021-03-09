@@ -62,7 +62,11 @@ body {
     align-items: center;
 }
 
+
 .start-btn .next-btn {
     font-size: 1.5 rem; 
 }  
 
+.hidden {
+    display: none;
+}
