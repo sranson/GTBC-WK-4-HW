@@ -27,12 +27,27 @@ function setNextQuestion() {
 function showQuestion(question) {
   questionElement.innerHTML = questions[currentQuestionIndex].question;
   // Loop through the answer array for the current question
-   answerChoices = question.answers
+   answerChoices = questions[currentQuestionIndex].answers
    // Loop through the answers array for the current question
+    for (i=0; i < answerChoices.length; i++) {
+      console.log(answerChoices[i]);                                         // IMPORTANT! THIS CODE OUTPUTS EACH ANSWER INDIVIDUALLY
+      button = document.createElement('button')
+      button.innerText = answerChoices[i].text                              // cannot read property text of undefined
+      button.classList.add('btn')
+      if (answerChoices[i].correct) {
+        button.dataset.correct = answerChoices[i].correct;
+      }
+      button.addEventListener('click', selectAnswer)
+      answerButtonsElement.appendChild(button);
+   addOne();
+    }
+  }
+
+/*
    answerChoices.forEach(function() {
       console.log(answerChoices[counter]);                                         // IMPORTANT! THIS CODE OUTPUTS EACH ANSWER INDIVIDUALLY
       button = document.createElement('button')
-      button.innerText = answerChoices[counter].text
+      button.innerText = answerChoices[counter].text                              // cannot read property text of undefined
       button.classList.add('btn')
       if (answerChoices[counter].correct) {
         button.dataset.correct = answerChoices[counter].correct;
@@ -40,8 +55,8 @@ function showQuestion(question) {
       button.addEventListener('click', selectAnswer)
       answerButtonsElement.appendChild(button);
    addOne();
- }); 
-}
+  }); 
+*/
 
 function addOne() {
   counter += 1;
@@ -66,6 +81,7 @@ function selectAnswer(e) {
   } else {
     console.log('THE WRONG ANSWER WAS CHOSEN');
   }
+  nextButton.classList.remove('hidden');
 }
 
 
@@ -74,6 +90,11 @@ function selectAnswer(e) {
 startBtn.addEventListener("click", function() {
     startQuiz();
     startTimer();
+})
+
+nextButton.addEventListener('click', function () {
+  currentQuestionIndex++;
+  setNextQuestion();
 })
 
 
@@ -105,7 +126,7 @@ var questions = [                                               // this is an ob
     {
       question: "Commonly used data types do not include?",
       answers: [
-        { text: "strings", correct: false},
+        { text: "Strings", correct: false},
         { text: "Booleans", correct: false},
         { text: "Arrays", correct: false},
         { text: "Alerts", correct: true}                      // questions[1].answers[3].correct > true
