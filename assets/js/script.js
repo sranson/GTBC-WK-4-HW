@@ -1,4 +1,4 @@
-
+var instructionsDiv = document.getElementById("instructionsDiv")
 var timeClock = document.getElementById("timeClock");
 var startBtn = document.getElementById("start-btn");
 var questionContainerElement = document.getElementById("question-container");
@@ -9,6 +9,7 @@ var ShowQuestions, currentQuestionIndex;
 
 function startQuiz() { 
    startBtn.classList.add('hidden');
+   instructionsDiv.classList.add('hidden');
    ShowQuestions = questions
    currentQuestionIndex = 0;
    questionContainerElement.classList.remove('hidden');
