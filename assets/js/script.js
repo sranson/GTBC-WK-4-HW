@@ -3,10 +3,11 @@ var timeClock = document.getElementById("timeClock");
 var startBtn = document.getElementById("start-btn");
 var questionContainerElement = document.getElementById("question-container");
 var questionElement = document.getElementById("question");
-var answerButtonsElement = document.getElementById("answerButtons");
+var answerButtonsElement = document.getElementById("answer-buttons");
 
-var shuffledQuestions, currentQuestionIndex;
+var ShowQuestions, currentQuestionIndex;
 
+var counter = 0;
 
 function startQuiz() { 
    startBtn.classList.add('hidden');
@@ -23,36 +24,33 @@ function setNextQuestion() {
 
 
 function showQuestion(question) {
-    questionElement.innerHTML = questions[currentQuestionIndex].question;
+  questionElement.innerHTML = questions[currentQuestionIndex].question;
+
     
-    for (i = 0; i < questions.length; i++) {
-      console.log(questions[i].question)   
-      var button = $('<button>');
-      button.text('questions[i].answers.text');
-      button.addClass('btn');
-
-      if (questions[i].answers[i].correct) {            // cannot read property correct of undefined
-        button.dataset.correct = answer.correct   
-      }   
-    button.on('click', selectAnswer)  
-  }   
+  // Loop through the answer array for the current question
+   answerChoices = question.answers
+   answerChoices.forEach(function() {
+   console.log(answerChoices[counter]);                                         // IMPORTANT! THIS CODE OUTPUTS EACH ANSWER INDIVIDUALLY
+   var button = document.createElement('button')
+   button.innerText = answerChoices[counter].text
+   button.classList.add('btn')
+   button.addEventListener('click', selectAnswer)
+   answerButtonsElement.appendChild(button);
+   addOne();
+ }); 
 }
 
 
-function selectAnswer() {
-
+function addOne() {
+  counter += 1;
+  return counter;
 }
 
 
 
+function selectAnswer(e) {
 
-
-
-
-
-
-
-
+}
 
 
 // Event Listener for Start Button
@@ -60,8 +58,6 @@ startBtn.addEventListener("click", function() {
     startQuiz();
     startTimer();
 })
-
-
 
 
 // Timer
@@ -85,8 +81,8 @@ var questions = [                                               // this is an ob
     {
         question: "Is JavaScript the same as Java?",             //this is questions[0].question
         answers: [                                              //this is questions[0].answers
-            { text: 'yes', correct: false},                     //this is questions[0].answers[0] -------  questions[0].answers[0].correct     > false    
-            { text:'no', correct: true}                        // this is questions[0].answers[1] ------  questions[0].answers[1].correct      > true
+            { text: 'Yes', correct: false},                     //this is questions[0].answers[0] -------  questions[0].answers[0].correct     > false    
+            { text:'No', correct: true}                        // this is questions[0].answers[1] ------  questions[0].answers[1].correct      > true
         ]
     },
     {
