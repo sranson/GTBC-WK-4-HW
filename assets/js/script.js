@@ -1,6 +1,7 @@
 
 var timeClock = document.getElementById("timeClock");
 var startBtn = document.getElementById("start-btn");
+var nextButton = document.getElementById("next-btn");
 var questionContainerElement = document.getElementById("question-container");
 var questionElement = document.getElementById("question");
 var answerButtonsElement = document.getElementById("answer-buttons");
@@ -19,6 +20,7 @@ function startQuiz() {
 
 
 function setNextQuestion() {
+  resetState();
     showQuestion(ShowQuestions[currentQuestionIndex]);
 }
 
@@ -29,16 +31,30 @@ function showQuestion(question) {
     
   // Loop through the answer array for the current question
    answerChoices = question.answers
+
+   // Loop through the answers array for the current question
    answerChoices.forEach(function() {
-   console.log(answerChoices[counter]);                                         // IMPORTANT! THIS CODE OUTPUTS EACH ANSWER INDIVIDUALLY
-   var button = document.createElement('button')
-   button.innerText = answerChoices[counter].text
-   button.classList.add('btn')
-   button.addEventListener('click', selectAnswer)
-   answerButtonsElement.appendChild(button);
+      console.log(answerChoices[counter]);                                         // IMPORTANT! THIS CODE OUTPUTS EACH ANSWER INDIVIDUALLY
+      var button = document.createElement('button')
+      button.innerText = answerChoices[counter].text
+      button.classList.add('btn')
+
+      if (answerChoices[counter].correct) {
+        button.dataset.correct = answerChoices[counter].correct;
+      }
+      button.addEventListener('click', selectAnswer)
+      answerButtonsElement.appendChild(button);
    addOne();
  }); 
 }
+
+function resetState() {
+  nextButton.classList.add('hidden');
+  while (answerButtonsElement.firstChild) {
+    answerButtonsElement.removeChild(answerButtonsElement.firstChild);
+  }
+}
+
 
 
 function addOne() {
