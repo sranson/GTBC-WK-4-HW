@@ -54,6 +54,7 @@ function selectAnswer(e) {
   } else {
     console.log('THE WRONG ANSWER WAS CHOSEN- DECREMENTING TIME');
     currentQuestionIndex++;
+    secondsLeft = secondsLeft - 10;  
     setNextQuestion();
   }
 }
@@ -67,12 +68,15 @@ startBtn.addEventListener("click", function() {
 })
 
 
+var secondsLeft = 60;
+
+
 
 // Timer
-var secondsLeft = 60;
+
 function startTimer() {
   //console.log("The timer is starting");
-  var timerInterval = setInterval(function() {
+  timerInterval = setInterval(function() {
     secondsLeft--;
     timeClock.textContent = secondsLeft + " seconds left to complete the quiz.";
 
