@@ -18,27 +18,22 @@ function startQuiz() {
    setNextQuestion();
 }
 
-
 function setNextQuestion() {
   resetState();
-    showQuestion(ShowQuestions[currentQuestionIndex]);
+  showQuestion(ShowQuestions[currentQuestionIndex]);
 }
 
 
 function showQuestion(question) {
   questionElement.innerHTML = questions[currentQuestionIndex].question;
-
-    
   // Loop through the answer array for the current question
    answerChoices = question.answers
-
    // Loop through the answers array for the current question
    answerChoices.forEach(function() {
       console.log(answerChoices[counter]);                                         // IMPORTANT! THIS CODE OUTPUTS EACH ANSWER INDIVIDUALLY
-      var button = document.createElement('button')
+      button = document.createElement('button')
       button.innerText = answerChoices[counter].text
       button.classList.add('btn')
-
       if (answerChoices[counter].correct) {
         button.dataset.correct = answerChoices[counter].correct;
       }
@@ -46,6 +41,11 @@ function showQuestion(question) {
       answerButtonsElement.appendChild(button);
    addOne();
  }); 
+}
+
+function addOne() {
+  counter += 1;
+  return counter;
 }
 
 function resetState() {
@@ -57,16 +57,17 @@ function resetState() {
 
 
 
-function addOne() {
-  counter += 1;
-  return counter;
-}
-
-
 
 function selectAnswer(e) {
-
+  selectedButton = e.target;
+  var correct = selectedButton.dataset.correct;
+  if (correct) {
+    console.log('The CORRECT ANSWER WAS CHOSEN');
+  } else {
+    console.log('THE WRONG ANSWER WAS CHOSEN');
+  }
 }
+
 
 
 // Event Listener for Start Button
