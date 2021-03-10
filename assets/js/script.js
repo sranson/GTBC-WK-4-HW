@@ -1,14 +1,11 @@
 
 var timeClock = document.getElementById("timeClock");
 var startBtn = document.getElementById("start-btn");
-var nextButton = document.getElementById("next-btn");
 var questionContainerElement = document.getElementById("question-container");
 var questionElement = document.getElementById("question");
 var answerButtonsElement = document.getElementById("answer-buttons");
 
 var ShowQuestions, currentQuestionIndex;
-
-var counter = 0;
 
 function startQuiz() { 
    startBtn.classList.add('hidden');
@@ -23,65 +20,41 @@ function setNextQuestion() {
   showQuestion(ShowQuestions[currentQuestionIndex]);
 }
 
+function resetState() {
+  while (answerButtonsElement.firstChild) {
+    answerButtonsElement.removeChild(answerButtonsElement.firstChild);
+  }
+}
 
-function showQuestion(question) {
+function showQuestion() {
   questionElement.innerHTML = questions[currentQuestionIndex].question;
-  // Loop through the answer array for the current question
    answerChoices = questions[currentQuestionIndex].answers
    // Loop through the answers array for the current question
     for (i=0; i < answerChoices.length; i++) {
       console.log(answerChoices[i]);                                         // IMPORTANT! THIS CODE OUTPUTS EACH ANSWER INDIVIDUALLY
       button = document.createElement('button')
-      button.innerText = answerChoices[i].text                              // cannot read property text of undefined
+      button.innerText = answerChoices[i].text                             
       button.classList.add('btn')
       if (answerChoices[i].correct) {
         button.dataset.correct = answerChoices[i].correct;
       }
       button.addEventListener('click', selectAnswer)
       answerButtonsElement.appendChild(button);
-   addOne();
     }
   }
-
-/*
-   answerChoices.forEach(function() {
-      console.log(answerChoices[counter]);                                         // IMPORTANT! THIS CODE OUTPUTS EACH ANSWER INDIVIDUALLY
-      button = document.createElement('button')
-      button.innerText = answerChoices[counter].text                              // cannot read property text of undefined
-      button.classList.add('btn')
-      if (answerChoices[counter].correct) {
-        button.dataset.correct = answerChoices[counter].correct;
-      }
-      button.addEventListener('click', selectAnswer)
-      answerButtonsElement.appendChild(button);
-   addOne();
-  }); 
-*/
-
-function addOne() {
-  counter += 1;
-  return counter;
-}
-
-function resetState() {
-  nextButton.classList.add('hidden');
-  while (answerButtonsElement.firstChild) {
-    answerButtonsElement.removeChild(answerButtonsElement.firstChild);
-  }
-}
-
-
-
 
 function selectAnswer(e) {
   selectedButton = e.target;
   var correct = selectedButton.dataset.correct;
   if (correct) {
     console.log('The CORRECT ANSWER WAS CHOSEN');
+    currentQuestionIndex++;
+    setNextQuestion();
   } else {
-    console.log('THE WRONG ANSWER WAS CHOSEN');
+    console.log('THE WRONG ANSWER WAS CHOSEN- DECREMENTING TIME');
+    currentQuestionIndex++;
+    setNextQuestion();
   }
-  nextButton.classList.remove('hidden');
 }
 
 
@@ -92,15 +65,10 @@ startBtn.addEventListener("click", function() {
     startTimer();
 })
 
-nextButton.addEventListener('click', function () {
-  currentQuestionIndex++;
-  setNextQuestion();
-})
 
 
 // Timer
 var secondsLeft = 60;
-
 function startTimer() {
   //console.log("The timer is starting");
   var timerInterval = setInterval(function() {
