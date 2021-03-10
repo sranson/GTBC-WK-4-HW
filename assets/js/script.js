@@ -5,13 +5,12 @@ var questionContainerElement = document.getElementById("question-container");
 var questionElement = document.getElementById("question");
 var answerButtonsElement = document.getElementById("answerButtons");
 
-let shuffledQuestions, currentQuestionIndex;
+var shuffledQuestions, currentQuestionIndex;
 
 
-function startQuiz() {
-   console.log("The quiz is starting"); 
+function startQuiz() { 
    startBtn.classList.add('hidden');
-   shuffledQuestions = questions.sort(() => Math.random() - .5);
+   ShowQuestions = questions
    currentQuestionIndex = 0;
    questionContainerElement.classList.remove('hidden');
    setNextQuestion();
@@ -19,13 +18,26 @@ function startQuiz() {
 
 
 function setNextQuestion() {
-    showQuestion(shuffledQuestions[currentQuestionIndex]);
+    showQuestion(ShowQuestions[currentQuestionIndex]);
 }
 
 
 function showQuestion(question) {
     questionElement.innerHTML = questions[currentQuestionIndex].question;
+    
+    for (i = 0; i < questions.length; i++) {
+      console.log(questions[i].question)   
+      var button = $('<button>');
+      button.text('questions[i].answers.text');
+      button.addClass('btn');
+
+      if (questions[i].answers[i].correct) {            // cannot read property correct of undefined
+        button.dataset.correct = answer.correct   
+      }   
+    button.on('click', selectAnswer)  
+  }   
 }
+
 
 function selectAnswer() {
 
@@ -76,5 +88,39 @@ var questions = [                                               // this is an ob
             { text: 'yes', correct: false},                     //this is questions[0].answers[0] -------  questions[0].answers[0].correct     > false    
             { text:'no', correct: true}                        // this is questions[0].answers[1] ------  questions[0].answers[1].correct      > true
         ]
+    },
+    {
+      question: "Commonly used data types do not include?",
+      answers: [
+        { text: "strings", correct: false},
+        { text: "Booleans", correct: false},
+        { text: "Arrays", correct: false},
+        { text: "Alerts", correct: true}                      // questions[1].answers[3].correct > true
+      ]
+    },
+    {
+      question: "Inside which HTML element do we put the JavaScript?",
+      answers: [
+        { text: "<javascript>", correct: false},
+        { text: "<script>", correct: true},
+        { text: "<js>", correct: false},
+        { text: "<scripting>", correct: false }
+      ]
+    },
+    {
+      question: "Where is the correct place to insert a JavaScript?",
+      answers: [
+        { text: "Both the <head> section and the <body> section are correct", correct: true},
+        { text: "The <head> section", correct: false},
+        { text: "The <body section", correct: false},
+      ]
+    },
+    {
+      question: "What is the correct syntax for referring to an external script called xxx.js?",
+      answers: [
+        { text: "<script name=\"xxx.js\">", correct: true},
+        { text: "<script href=\"xxx.js\">", correct: false},
+        { text: "<script src=\"xxx.js\">", correct: false}
+      ]
     }
 ]
