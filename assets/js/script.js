@@ -18,12 +18,12 @@ results.classList.add('hidden');
 
 // QUIZ QUESTIONS AND ANSWERS
 //====================================================================================
-var questions = [                                               // this is an object - I thought it would be an array
+var questions = [                                              
   {
-      question: "Is JavaScript the same as Java?",             //this is questions[0].question
-      answers: [                                              //this is questions[0].answers
-          { text: 'Yes', correct: false},                     //this is questions[0].answers[0] -------  questions[0].answers[0].correct     > false    
-          { text:'No', correct: true}                        // this is questions[0].answers[1] ------  questions[0].answers[1].correct      > true
+      question: "Is JavaScript the same as Java?",            
+      answers: [                                            
+          { text: 'Yes', correct: false},                  
+          { text:'No', correct: true}          
       ]
   },
   {
@@ -32,7 +32,7 @@ var questions = [                                               // this is an ob
       { text: "Strings", correct: false},
       { text: "Booleans", correct: false},
       { text: "Arrays", correct: false},
-      { text: "Alerts", correct: true}                      // questions[1].answers[3].correct > true
+      { text: "Alerts", correct: true}                      
     ]
   },
   {
@@ -61,9 +61,7 @@ var questions = [                                               // this is an ob
     ]
   }
 ]
-//==============================================================================================================================
-
-
+//====================================================================================
 
 
 // OTHER VARIABLES
@@ -118,8 +116,7 @@ var questions = [                                               // this is an ob
       questionElement.innerHTML = questions[currentQuestionIndex].question;
       answerChoices = questions[currentQuestionIndex].answers
       // Loop through the answers array for the current question
-        for (i=0; i < answerChoices.length; i++) {
-          //console.log(answerChoices[i]);                                         // IMPORTANT! THIS CODE OUTPUTS EACH ANSWER INDIVIDUALLY
+        for (i=0; i < answerChoices.length; i++) {                     
           button = document.createElement('button')
           button.innerText = answerChoices[i].text                             
           button.classList.add('btn')
@@ -133,7 +130,6 @@ var questions = [                                               // this is an ob
       $(timeClock).hide();
       $(questionElement).hide();
     }
-
   }
 
 
@@ -192,27 +188,11 @@ var questions = [                                               // this is an ob
   function showResults() {
     console.log("SHOWING RESULTS!");
     results.classList.remove('hidden');
-    //console.log(localStorage.FinalScore);
     userInitials.textContent = "Initials: " + localStorage.Initials;
-    finalScore.textContent = "Final Score: " + localStorage.FinalScore;
+    finalScore.textContent = "Final Score: " + localStorage.FinalScore + "%";
     remainingTime.textContent = "Remaining Time: " + localStorage.TimeRemaining;
   }
-
-
-
-
 
 //===================================================================================
 
 
-//  2. Show the username, the score, and the time remaining
-
-//var finalScore = document.getElementById("finalScore");
-//var userInitials = document.getElementById("userInitials");
-//var remainingTime = document.getElementById("remainingTime");
-
-
-
-//<h1 id="finalScore">Final Score: </h1>
-//<h1 id="userInitials">User Initials: </h1>
-//<h1 id="remainingTime">Remaining Time: </h1>
