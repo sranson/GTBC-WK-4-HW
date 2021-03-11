@@ -1,133 +1,166 @@
-var instructionsDiv = document.getElementById("instructionsDiv")
-var timeClock = document.getElementById("timeClock");
-var startBtn = document.getElementById("start-btn");
-var questionContainerElement = document.getElementById("question-container");
-var questionElement = document.getElementById("question");
-var answerButtonsElement = document.getElementById("answer-buttons");
+// DOM ELEMENTS
+//=================================================================================
+  var instructionsDiv = document.getElementById("instructionsDiv")
+  var timeClock = document.getElementById("timeClock");
+  var startBtn = document.getElementById("start-btn");
+  var questionContainerElement = document.getElementById("question-container");
+  var questionElement = document.getElementById("question");
+  var answerButtonsElement = document.getElementById("answer-buttons");
+//==================================================================================
 
-var ShowQuestions, currentQuestionIndex;
 
-function startQuiz() { 
-   startBtn.classList.add('hidden');
-   instructionsDiv.classList.add('hidden');
-   ShowQuestions = questions
-   currentQuestionIndex = 0;
-   questionContainerElement.classList.remove('hidden');
-   setNextQuestion();
-}
-
-function setNextQuestion() {
-  resetState();
-  showQuestion(ShowQuestions[currentQuestionIndex]);
-}
-
-function resetState() {
-  while (answerButtonsElement.firstChild) {
-    answerButtonsElement.removeChild(answerButtonsElement.firstChild);
+// QUIZ QUESTIONS AND ANSWERS
+//====================================================================================
+var questions = [                                               // this is an object - I thought it would be an array
+  {
+      question: "Is JavaScript the same as Java?",             //this is questions[0].question
+      answers: [                                              //this is questions[0].answers
+          { text: 'Yes', correct: false},                     //this is questions[0].answers[0] -------  questions[0].answers[0].correct     > false    
+          { text:'No', correct: true}                        // this is questions[0].answers[1] ------  questions[0].answers[1].correct      > true
+      ]
+  },
+  {
+    question: "Commonly used data types do not include?",
+    answers: [
+      { text: "Strings", correct: false},
+      { text: "Booleans", correct: false},
+      { text: "Arrays", correct: false},
+      { text: "Alerts", correct: true}                      // questions[1].answers[3].correct > true
+    ]
+  },
+  {
+    question: "Inside which HTML element do we put the JavaScript?",
+    answers: [
+      { text: "<javascript>", correct: false},
+      { text: "<script>", correct: true},
+      { text: "<js>", correct: false},
+      { text: "<scripting>", correct: false }
+    ]
+  },
+  {
+    question: "Where is the correct place to insert a JavaScript?",
+    answers: [
+      { text: "Both the <head> section and the <body> section are correct", correct: true},
+      { text: "The <head> section", correct: false},
+      { text: "The <body section", correct: false},
+    ]
+  },
+  {
+    question: "What is the correct syntax for referring to an external script called xxx.js?",
+    answers: [
+      { text: "<script name=\"xxx.js\">", correct: true},
+      { text: "<script href=\"xxx.js\">", correct: false},
+      { text: "<script src=\"xxx.js\">", correct: false}
+    ]
   }
-}
-
-function showQuestion() {
-  questionElement.innerHTML = questions[currentQuestionIndex].question;
-   answerChoices = questions[currentQuestionIndex].answers
-   // Loop through the answers array for the current question
-    for (i=0; i < answerChoices.length; i++) {
-      console.log(answerChoices[i]);                                         // IMPORTANT! THIS CODE OUTPUTS EACH ANSWER INDIVIDUALLY
-      button = document.createElement('button')
-      button.innerText = answerChoices[i].text                             
-      button.classList.add('btn')
-      if (answerChoices[i].correct) {
-        button.dataset.correct = answerChoices[i].correct;
-      }
-      button.addEventListener('click', selectAnswer)
-      answerButtonsElement.appendChild(button);
-    }
-  }
-
-function selectAnswer(e) {
-  selectedButton = e.target;
-  var correct = selectedButton.dataset.correct;
-  if (correct) {
-    console.log('The CORRECT ANSWER WAS CHOSEN');
-    currentQuestionIndex++;
-    setNextQuestion();
-  } else {
-    console.log('THE WRONG ANSWER WAS CHOSEN- DECREMENTING TIME');
-    currentQuestionIndex++;
-    secondsLeft = secondsLeft - 10;  
-    setNextQuestion();
-  }
-}
+]
+//==============================================================================================================================
 
 
 
-// Event Listener for Start Button
-startBtn.addEventListener("click", function() {
+
+// OTHER VARIABLES
+//===================================================================================
+  var secondsLeft = 60;  
+  var ShowQuestions;
+  var currentQuestionIndex;
+  var questionsAttempted = 0;
+  var totalCorrect = 0;
+  var totalQuestions = questions.length;
+//===================================================================================
+
+
+
+//EVENT LISTENERS
+//===================================================================================
+  startBtn.addEventListener("click", function() {
     startQuiz();
     startTimer();
-})
+  })
+//===================================================================================
 
 
-var secondsLeft = 60;
+//FUNCTIONS
+//===================================================================================
+  function startQuiz() { 
+    startBtn.classList.add('hidden');
+    instructionsDiv.classList.add('hidden');
+    ShowQuestions = questions
+    currentQuestionIndex = 0;
+    questionContainerElement.classList.remove('hidden');
+    setNextQuestion();
+  }
 
 
+  function setNextQuestion() {
+    resetState();
+    showQuestion(ShowQuestions[currentQuestionIndex]);
+  }
 
-// Timer
 
-function startTimer() {
-  //console.log("The timer is starting");
-  timerInterval = setInterval(function() {
-    secondsLeft--;
-    timeClock.textContent = secondsLeft + " seconds left to complete the quiz.";
-
-    if (secondsLeft === 0) {
-      clearInterval(timerInterval);
-      console.log("Quiz Over");
+  function resetState() {
+    while (answerButtonsElement.firstChild) {
+      answerButtonsElement.removeChild(answerButtonsElement.firstChild);
     }
-  }, 1000);
-}
+  }
 
 
-var questions = [                                               // this is an object - I thought it would be an array
-    {
-        question: "Is JavaScript the same as Java?",             //this is questions[0].question
-        answers: [                                              //this is questions[0].answers
-            { text: 'Yes', correct: false},                     //this is questions[0].answers[0] -------  questions[0].answers[0].correct     > false    
-            { text:'No', correct: true}                        // this is questions[0].answers[1] ------  questions[0].answers[1].correct      > true
-        ]
-    },
-    {
-      question: "Commonly used data types do not include?",
-      answers: [
-        { text: "Strings", correct: false},
-        { text: "Booleans", correct: false},
-        { text: "Arrays", correct: false},
-        { text: "Alerts", correct: true}                      // questions[1].answers[3].correct > true
-      ]
-    },
-    {
-      question: "Inside which HTML element do we put the JavaScript?",
-      answers: [
-        { text: "<javascript>", correct: false},
-        { text: "<script>", correct: true},
-        { text: "<js>", correct: false},
-        { text: "<scripting>", correct: false }
-      ]
-    },
-    {
-      question: "Where is the correct place to insert a JavaScript?",
-      answers: [
-        { text: "Both the <head> section and the <body> section are correct", correct: true},
-        { text: "The <head> section", correct: false},
-        { text: "The <body section", correct: false},
-      ]
-    },
-    {
-      question: "What is the correct syntax for referring to an external script called xxx.js?",
-      answers: [
-        { text: "<script name=\"xxx.js\">", correct: true},
-        { text: "<script href=\"xxx.js\">", correct: false},
-        { text: "<script src=\"xxx.js\">", correct: false}
-      ]
+  function showQuestion() {
+    if (secondsLeft !== 0 && questionsAttempted !== totalQuestions) {
+      questionElement.innerHTML = questions[currentQuestionIndex].question;
+      answerChoices = questions[currentQuestionIndex].answers
+      // Loop through the answers array for the current question
+        for (i=0; i < answerChoices.length; i++) {
+          //console.log(answerChoices[i]);                                         // IMPORTANT! THIS CODE OUTPUTS EACH ANSWER INDIVIDUALLY
+          button = document.createElement('button')
+          button.innerText = answerChoices[i].text                             
+          button.classList.add('btn')
+          if (answerChoices[i].correct) {
+            button.dataset.correct = answerChoices[i].correct;
+          }
+          button.addEventListener('click', selectAnswer)
+          answerButtonsElement.appendChild(button);
+        }
     }
-]
+  }
+
+
+  function selectAnswer(e) {
+    questionsAttempted++;
+    console.log("Questions Attempted: " + questionsAttempted);
+    selectedButton = e.target;
+    var correct = selectedButton.dataset.correct;
+    if (correct) {
+      currentQuestionIndex++;
+      totalCorrect++;
+      console.log("Total Correct: " + totalCorrect);
+      setNextQuestion();
+    } else {
+      currentQuestionIndex++;
+      secondsLeft = secondsLeft - 10;  
+      setNextQuestion();
+    }
+  }
+
+
+  function startTimer() {
+    //console.log("The timer is starting");
+    timerInterval = setInterval(function() {
+      secondsLeft--;
+      timeClock.textContent = secondsLeft + " seconds left to complete the quiz.";
+
+      if (secondsLeft === 0 || questionsAttempted === totalQuestions) {
+        clearInterval(timerInterval);
+        gameOver();
+      }
+    }, 1000);
+  }
+
+
+  function gameOver() {
+      console.log("THE GAME IS OVER");
+  }
+//===================================================================================
+
+
+
