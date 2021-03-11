@@ -48,9 +48,9 @@ var questions = [                                               // this is an ob
   {
     question: "What is the correct syntax for referring to an external script called xxx.js?",
     answers: [
-      { text: "<script name=\"xxx.js\">", correct: true},
+      { text: "<script name=\"xxx.js\">", correct: false},
       { text: "<script href=\"xxx.js\">", correct: false},
-      { text: "<script src=\"xxx.js\">", correct: false}
+      { text: "<script src=\"xxx.js\">", correct: true}
     ]
   }
 ]
@@ -127,24 +127,24 @@ var questions = [                                               // this is an ob
 
   function selectAnswer(e) {
     questionsAttempted++;
-    console.log("Questions Attempted: " + questionsAttempted);
+    //console.log("Questions Attempted: " + questionsAttempted);
     selectedButton = e.target;
     var correct = selectedButton.dataset.correct;
     if (correct) {
       currentQuestionIndex++;
       totalCorrect++;
-      console.log("Total Correct: " + totalCorrect);
+      //console.log("Total Correct: " + totalCorrect);
       setNextQuestion();
     } else {
       currentQuestionIndex++;
       secondsLeft = secondsLeft - 10;  
+      console.log("Total Correct: " + totalCorrect);
       setNextQuestion();
     }
   }
 
 
   function startTimer() {
-    //console.log("The timer is starting");
     timerInterval = setInterval(function() {
       secondsLeft--;
       timeClock.textContent = secondsLeft + " seconds left to complete the quiz.";
@@ -159,8 +159,31 @@ var questions = [                                               // this is an ob
 
   function gameOver() {
       console.log("THE GAME IS OVER");
+      //console.log("Questions Attempted: " + questionsAttempted);
+      //console.log("Total Correct: " + totalCorrect);
+      calculateScore(questionsAttempted, totalCorrect);
+  }
+
+
+  function calculateScore(questionsAttempted, totalCorrect ) {
+    score = (100 / questionsAttempted) * totalCorrect;
+    console.log(score);
+    pushToLocalStorage();
+  }
+
+  function pushToLocalStorage() {
+    localStorage.setItem("Final Score", score)
   }
 //===================================================================================
 
 
 
+/*
+LocalStorage is a key/ value pair
+
+key: totalCorrect
+key: totalAttempted
+key: timeLeft
+key: username
+key: score
+*/
