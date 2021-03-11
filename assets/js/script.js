@@ -7,8 +7,14 @@
   var questionContainerElement = document.getElementById("question-container");
   var questionElement = document.getElementById("question");
   var answerButtonsElement = document.getElementById("answer-buttons");
+  var controls = document.getElementById("controls");
+  var results = document.getElementById("results");
+  var finalScore = document.getElementById("finalScore");
+  var userInitials = document.getElementById("userInitials");
+  var remainingTime = document.getElementById("remainingTime");
 //==================================================================================
 
+results.classList.add('hidden');
 
 // QUIZ QUESTIONS AND ANSWERS
 //====================================================================================
@@ -68,6 +74,7 @@ var questions = [                                               // this is an ob
   var questionsAttempted = 0;
   var totalCorrect = 0;
   var totalQuestions = questions.length;
+  var initials;
 //===================================================================================
 
 
@@ -122,7 +129,11 @@ var questions = [                                               // this is an ob
           button.addEventListener('click', selectAnswer)
           answerButtonsElement.appendChild(button);
         }
+    } else {
+      $(timeClock).hide();
+      $(questionElement).hide();
     }
+
   }
 
 
@@ -157,7 +168,7 @@ var questions = [                                               // this is an ob
 
   function gameOver() {
       calculateScore(questionsAttempted, totalCorrect);
-      showResults();
+      getInitials();
   }
 
 
@@ -166,21 +177,42 @@ var questions = [                                               // this is an ob
     pushToLocalStorage();
   }
 
-  function showResults() {
-    questionContainerElement.classList.add('hidden');
-    var username = prompt("Enter your username to see your score!");
-    localStorage.setItem("Username", username);
+  function getInitials() {
+    initials = prompt("Enter your initials to see your score!");
+    pushToLocalStorage();
+    showResults();
   }
 
   function pushToLocalStorage() {
-    localStorage.setItem("Final Score", score)
-    localStorage.setItem("Time Remaining", secondsLeft + " seconds left")
+    localStorage.setItem("FinalScore", score)
+    localStorage.setItem("TimeRemaining", secondsLeft + " seconds left")
+    localStorage.setItem("Initials", initials)
   }
+
+  function showResults() {
+    console.log("SHOWING RESULTS!");
+    results.classList.remove('hidden');
+    //console.log(localStorage.FinalScore);
+    userInitials.textContent = "Initials: " + localStorage.Initials;
+    finalScore.textContent = "Final Score: " + localStorage.FinalScore;
+    remainingTime.textContent = "Remaining Time: " + localStorage.TimeRemaining;
+  }
+
+
+
 
 
 //===================================================================================
 
-// To-Do Once the game is over:
-//  1. Prompt the user to provide their initials
-//      "Enter your initials to see your score"   => save the username in localStorage
+
 //  2. Show the username, the score, and the time remaining
+
+//var finalScore = document.getElementById("finalScore");
+//var userInitials = document.getElementById("userInitials");
+//var remainingTime = document.getElementById("remainingTime");
+
+
+
+//<h1 id="finalScore">Final Score: </h1>
+//<h1 id="userInitials">User Initials: </h1>
+//<h1 id="remainingTime">Remaining Time: </h1>
