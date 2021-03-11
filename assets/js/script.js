@@ -1,6 +1,7 @@
 // DOM ELEMENTS
 //=================================================================================
-  var instructionsDiv = document.getElementById("instructionsDiv")
+  var container = document.getElementById("container");
+  var instructionsDiv = document.getElementById("instructionsDiv");
   var timeClock = document.getElementById("timeClock");
   var startBtn = document.getElementById("start-btn");
   var questionContainerElement = document.getElementById("question-container");
@@ -127,18 +128,15 @@ var questions = [                                               // this is an ob
 
   function selectAnswer(e) {
     questionsAttempted++;
-    //console.log("Questions Attempted: " + questionsAttempted);
     selectedButton = e.target;
     var correct = selectedButton.dataset.correct;
     if (correct) {
       currentQuestionIndex++;
       totalCorrect++;
-      //console.log("Total Correct: " + totalCorrect);
       setNextQuestion();
     } else {
       currentQuestionIndex++;
       secondsLeft = secondsLeft - 10;  
-      console.log("Total Correct: " + totalCorrect);
       setNextQuestion();
     }
   }
@@ -158,8 +156,8 @@ var questions = [                                               // this is an ob
 
 
   function gameOver() {
-      console.log("THE GAME IS OVER");
       calculateScore(questionsAttempted, totalCorrect);
+      showResults();
   }
 
 
@@ -168,17 +166,21 @@ var questions = [                                               // this is an ob
     pushToLocalStorage();
   }
 
+  function showResults() {
+    questionContainerElement.classList.add('hidden');
+    var username = prompt("Enter your username to see your score!");
+    localStorage.setItem("Username", username);
+  }
+
   function pushToLocalStorage() {
     localStorage.setItem("Final Score", score)
-    localStorage.setItem("Time Remaining", secondsLeft)
+    localStorage.setItem("Time Remaining", secondsLeft + " seconds left")
   }
+
+
 //===================================================================================
 
-
-
-/*
-LocalStorage is a key/ value pair
-key: timeLeft
-key: username
-
-*/
+// To-Do Once the game is over:
+//  1. Prompt the user to provide their initials
+//      "Enter your initials to see your score"   => save the username in localStorage
+//  2. Show the username, the score, and the time remaining
