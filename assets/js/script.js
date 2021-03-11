@@ -159,20 +159,18 @@ var questions = [                                               // this is an ob
 
   function gameOver() {
       console.log("THE GAME IS OVER");
-      //console.log("Questions Attempted: " + questionsAttempted);
-      //console.log("Total Correct: " + totalCorrect);
       calculateScore(questionsAttempted, totalCorrect);
   }
 
 
   function calculateScore(questionsAttempted, totalCorrect ) {
     score = (100 / questionsAttempted) * totalCorrect;
-    console.log(score);
     pushToLocalStorage();
   }
 
   function pushToLocalStorage() {
     localStorage.setItem("Final Score", score)
+    localStorage.setItem("Time Remaining", secondsLeft)
   }
 //===================================================================================
 
@@ -180,10 +178,7 @@ var questions = [                                               // this is an ob
 
 /*
 LocalStorage is a key/ value pair
-
-key: totalCorrect
-key: totalAttempted
 key: timeLeft
 key: username
-key: score
+
 */
