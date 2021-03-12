@@ -47,7 +47,7 @@ var questions = [
     ]
   },
   {
-    question: "Where is the correct place to insert a JavaScript?",
+    question: "Where is the correct place to insert JavaScript?",
     answers: [
       { text: "Both the <head> section and the <body> section are correct", correct: true},
       { text: "The <head> section", correct: false},
