@@ -11,7 +11,7 @@ For this assignment, I was tasked with creating a timed coding quiz that subtrac
 5. Additional experience with event listeners
 
 
-## Screenshot
+## Screenshots
 ![Test your JavaScript](assets/images/JavaScriptQuiz1.png) 
 
 ![Test your JavaScript](assets/images/JavaScriptQuiz2.png) 
