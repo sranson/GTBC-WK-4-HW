@@ -18,7 +18,7 @@ For this assignment, I was tasked with creating a timed coding quiz that subtrac
 
 ![Test your JavaScript](assets/images/JavaScriptQuiz3.png) 
 
-#### [Test Your JavaScript](https://github.com/sranson/test-your-javascript)
+#### [Test Your JavaScript](https://sranson.github.io/test-your-javascript/)
 
 ## Future Enhancements
 1. Insert a pause between "correct"/"incorrect" notification and next question
