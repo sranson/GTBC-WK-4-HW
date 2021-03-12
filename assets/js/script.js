@@ -225,6 +225,7 @@ var questions = [
 
   function calculateScore(questionsAttempted, totalCorrect ) {
     score = (100 / questionsAttempted) * totalCorrect;
+    score = Math.round(score);
     pushToLocalStorage();
   }
 
