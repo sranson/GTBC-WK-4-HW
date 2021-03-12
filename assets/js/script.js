@@ -13,6 +13,7 @@
   var userInitials = document.getElementById("userInitials");
   var remainingTime = document.getElementById("remainingTime");
   var notification = document.getElementById("notification");
+  var tryAgain = document.getElementById("tryAgain");
 //==================================================================================
 
 results.classList.add('hidden');
@@ -125,6 +126,11 @@ var questions = [
   startBtn.addEventListener("click", function() {
     startQuiz();
     startTimer();
+  })
+
+  tryAgain.addEventListener("click", function() {
+    location.reload();
+    console.log("STARTING OVER!")
   })
 //===================================================================================
 
@@ -241,6 +247,7 @@ var questions = [
     userInitials.textContent = "Initials: " + localStorage.Initials;
     finalScore.textContent = "Final Score: " + localStorage.FinalScore + "%";
     remainingTime.textContent = "Remaining Time: " + localStorage.TimeRemaining;
+    tryAgain.classList.remove('hidden');
   }
 
 //===================================================================================
