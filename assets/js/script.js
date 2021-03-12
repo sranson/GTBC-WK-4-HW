@@ -207,7 +207,7 @@ var questions = [
       secondsLeft--;
       timeClock.textContent = secondsLeft + " seconds left to complete the quiz.";
 
-      if (secondsLeft === 0 || questionsAttempted === totalQuestions) {
+      if (secondsLeft <= 0 || questionsAttempted === totalQuestions) {
         console.log(secondsLeft);
         clearInterval(timerInterval);
         gameOver();
