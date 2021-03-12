@@ -20,6 +20,10 @@ For this assignment, I was tasked with creating a timed coding quiz that subtrac
 
 #### [Test Your JavaScript](https://github.com/sranson/test-your-javascript)
 
+## Future Enhancements
+1. Insert a pause between "correct"/"incorrect" notification and next question
+2. Get user initials from a modal as opposed to an alert box 
+
 ## License
 
 
