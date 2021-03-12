@@ -12,6 +12,7 @@
   var finalScore = document.getElementById("finalScore");
   var userInitials = document.getElementById("userInitials");
   var remainingTime = document.getElementById("remainingTime");
+  var notification = document.getElementById("notification");
 //==================================================================================
 
 results.classList.add('hidden');
@@ -171,6 +172,7 @@ var questions = [
     } else {
       $(timeClock).hide();
       $(questionElement).hide();
+      $(notification).hide();
     }
   }
 
@@ -183,7 +185,13 @@ var questions = [
       currentQuestionIndex++;
       totalCorrect++;
       setNextQuestion();
+      // SHOW ON HTML PAGE
+      notification.textContent = "Correct!"
+      notification.classList.remove('hidden');
     } else {
+      // SHOW ON HTML PAGE
+      notification.textContent = "Incorrect!"
+      notification.classList.remove('hidden');
       currentQuestionIndex++;
       secondsLeft = secondsLeft - 10;  
       setNextQuestion();
