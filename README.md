@@ -18,7 +18,14 @@ For this assignment, I was tasked with creating a timed coding quiz that subtrac
 
 ![Test your JavaScript](assets/images/JavaScriptQuiz3.png) 
 
+## Live Site:
 #### [Test Your JavaScript](https://sranson.github.io/test-your-javascript/)
+
+
+## Resources used:
+#### 1. [Build A Quiz App With JavaScript](https://www.youtube.com/watch?v=riDzcEQbX6k)
+#### 2. [JavaScript Local Storage Explained - Tutorial](https://www.youtube.com/watch?v=pafKvOw5rR0&t=286s)
+
 
 ## Future Enhancements
 1. Insert a pause between "correct"/"incorrect" notification and next question
