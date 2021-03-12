@@ -1,4 +1,4 @@
-# Test your JavaScript
+# Test Your JavaScript
 
 For this assignment, I was tasked with creating a timed coding quiz that subtracts time from the clock if an incorrect response is chosen. Additionally, the assignment called for the user's initials and final score to be saved locally.  
 
