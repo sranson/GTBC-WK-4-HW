@@ -59,6 +59,48 @@ var questions = [
       { text: "<script href=\"xxx.js\">", correct: false},
       { text: "<script src=\"xxx.js\">", correct: true}
     ]
+  }, 
+  {
+    question: "What will the code return? Boolean(3 < 7)",    
+    answers: [
+      { text: "true", correct: true},
+      { text: "false", correct: false},
+      { text: "NaN", correct: false},
+      { text: "SyntaxError", correct: false}
+    ]
+  },
+  {
+    question: "How do you write \"Hello World\" in an alert box?",                              
+    answers: [
+      { text: "alertBox(\"Hello World\")", correct: false},
+      { text: "msg(\"Hello World\")", correct: false},
+      { text: "msgBox(\"Hello World\")", correct: false},
+      { text: "alert(\"Hello World\")", correct: true}
+    ]
+  },
+  {
+    question: "How do you create a function in JavaScript?",
+    answers: [
+      { text: "function myFunction()", correct: true},
+      { text: "function = myFunction()", correct: false},
+      { text: "function:myFunction()", correct: false}
+    ]
+  },
+  {
+    question: "How do you call a function named \"myFunction\"?",
+    answers: [
+      { text: "myFunction()", correct: true},
+      { text: "call function myFunction()", correct: false},
+      { text: "call myFunction()", correct: false}
+    ]
+  },
+  {
+    question:"How does a WHILE loop start?",
+    answers: [
+      { text: "while (i<=10)", correct: true},
+      { text: "while i = 1 to 10", correct: false},
+      { text: "while (i <= 10; i++)", correct: false}
+    ]
   }
 ]
 //====================================================================================
