@@ -22,7 +22,8 @@ For this assignment, I was tasked with creating a timed coding quiz that subtrac
 
 ## Future Enhancements
 1. Insert a pause between "correct"/"incorrect" notification and next question
-2. Get user initials from a modal as opposed to an alert box 
+2. Get user initials from a modal as opposed to an alert box
+3. Add color palette and additional styling 
 
 ## License
 
