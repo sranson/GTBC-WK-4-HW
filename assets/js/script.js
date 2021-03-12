@@ -130,7 +130,6 @@ var questions = [
 
   tryAgain.addEventListener("click", function() {
     location.reload();
-    console.log("STARTING OVER!")
   })
 //===================================================================================
 
