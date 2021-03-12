@@ -151,7 +151,7 @@ var questions = [
     showQuestion(ShowQuestions[currentQuestionIndex]);
   }
 
-
+  // clear content in buttons
   function resetState() {
     while (answerButtonsElement.firstChild) {
       answerButtonsElement.removeChild(answerButtonsElement.firstChild);
@@ -175,9 +175,7 @@ var questions = [
           answerButtonsElement.appendChild(button);
         }
     } else {
-      $(timeClock).hide();
-      $(questionElement).hide();
-      $(notification).hide();
+      hideBoxContent()
     }
   }
 
@@ -210,6 +208,7 @@ var questions = [
       timeClock.textContent = secondsLeft + " seconds left to complete the quiz.";
 
       if (secondsLeft === 0 || questionsAttempted === totalQuestions) {
+        console.log(secondsLeft);
         clearInterval(timerInterval);
         gameOver();
       }
@@ -218,6 +217,7 @@ var questions = [
 
 
   function gameOver() {
+      hideBoxContent()
       calculateScore(questionsAttempted, totalCorrect);
       getInitials();
   }
@@ -229,7 +229,7 @@ var questions = [
   }
 
   function getInitials() {
-    initials = prompt("Enter your initials to see your score!");
+    initials = prompt("Time Up! Enter your initials to see your score!");
     pushToLocalStorage();
     showResults();
   }
@@ -248,6 +248,13 @@ var questions = [
     remainingTime.textContent = "Remaining Time: " + localStorage.TimeRemaining;
     tryAgain.classList.remove('hidden');
   }
+
+function hideBoxContent() {
+  $(timeClock).hide();
+  $(questionElement).hide();
+  $(notification).hide();
+  $(answerButtonsElement).hide();
+}
 
 //===================================================================================
 
